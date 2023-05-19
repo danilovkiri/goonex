@@ -3,11 +3,11 @@
 ## Usage
 
 ```bash
-goonextracker --id 95891071226627389766
+goonex --id 95891071226627389766
 ```
 
 ## Installation 
 
 ```shell
-go install -v github.com/danilovkiri/goonextrack/cmd/goonextrack@latest
+go install github.com/danilovkiri/goonex/cmd/goonex@main
 ```
