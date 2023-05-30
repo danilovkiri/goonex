@@ -88,3 +88,13 @@ type TrackingCodeImportData struct {
 		Iherb bool `json:"iherb"`
 	} `json:"data"`
 }
+
+type TrackingCodeImportDataEmpty struct {
+	Status int    `json:"status"`
+	Msg    string `json:"msg"`
+	Data   struct {
+		Import bool  `json:"import"`
+		Track  bool  `json:"track"`
+		Iherb  []any `json:"iherb"`
+	} `json:"data"`
+}

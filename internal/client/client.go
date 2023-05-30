@@ -129,13 +129,19 @@ func (c *Client) NewPostRequestToTracker(trackingID string) (parcelid, idbox str
 
 	// deserialize response into struct
 	var post dto.TrackingCodeImportData
-	err = json.Unmarshal(body, &post)
+	var postEmpty dto.TrackingCodeImportDataEmpty
+	err = json.Unmarshal(body, &postEmpty)
 	if err != nil {
-		c.logger.Error().Err(err).Msg("failed to unmarshal tracking request response")
-		return "", "", err
+		c.logger.Debug().Msg("tracking request response is valid")
+		err = json.Unmarshal(body, &post)
+		if err != nil {
+			c.logger.Error().Err(err).Msg("failed to unmarshal tracking request response")
+			return "", "", err
+		}
+	} else {
+		c.logger.Fatal().Msg("tracking request response is invalid, try a different tracking ID")
 	}
 	return post.Data.Import.Parcelid, post.Data.Import.Idbox, nil
-
 }
 
 func createMultipartFormDataPayload(trackingID string) (io.Reader, string, error) {

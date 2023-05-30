@@ -16,7 +16,7 @@ func main() {
 	mainLogger := logger.InitLog()
 	trackingID := flag.String("id", "0", "Valid tracking ID")
 	flag.Parse()
-	mainLogger.Debug().Str("tracklingID", *trackingID).Msg("tracking ID from CLI was received")
+	mainLogger.Debug().Str("trackingID", *trackingID).Msg("tracking ID from CLI was received")
 	mainLogger.Debug().Msg("initializing client")
 	mainClient := client.NewClient(mainLogger)
 	mainLogger.Debug().Msg("trying to get onex parcel identifiers")
